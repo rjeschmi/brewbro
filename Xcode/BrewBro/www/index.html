@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>BrewBro</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet"href="stylesheets/jquery.mobile-1.1.0.min.css" />
+        <link rel="stylesheet" href="stylesheets/brewbro.css" />
+        <!-- For web-based:
+        <link rel="stylesheet"href="http://code.jquery.com/mobile/1.1.0-rc.2/jquery.mobile-1.1.0-rc.2.min.css" />
+        <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+        <script	src="http://code.jquery.com/mobile/1.1.0-rc.2/jquery.mobile-1.1.0-rc.2.min.js"></script>
+        -->
+        <!-- PhoneGap js: -->
+        <!-- <script type="text/javascript" charset="utf-8" src="scripts/cordova-1.6.0.js"></script>
+        -->
+    </head>
+    <body>
+        <div data-role="page" id="main_page">
+            <div data-theme="a" data-role="header">
+                <h3>BrewBro</h3>
+            </div>
+            <div data-role="content">
+                <ul data-role="listview" data-divider-theme="b" data-inset="true">
+                    <li data-role="list-divider" role="heading">
+                        Divider
+                    </li>
+                    <li data-theme="c">
+                        <a href="#convert" data-transition="slide"> Convert </a>
+                    </li>
+                    <li data-theme="c">
+                        <a href="#hydro" data-transition="slide"> Hydrometer </a>
+                    </li>
+                    <li data-theme="c">
+                        <a href="#refract" data-transition="slide"> Refractometer </a>
+                    </li>
+                    <li data-theme="c">
+                        <a href="#yeast" data-transition="slide"> Yeast </a>
+                    </li>
+                    <li data-theme="c">
+                        <a href="#carb" data-transition="slide"> Carbonation </a>
+                    </li>
+                    <li data-theme="c">
+                        <a href="#water" data-transition="slide"> Water </a>
+                    </li>
+                    <li data-role="list-divider" role="heading">
+                        Divider
+                    </li>
+                    <li data-theme="c">
+                        <a href="#about" data-transition="slide"> About </a>
+                    </li>
+                </ul>
+            </div>
+            <div data-theme="a" data-role="footer" data-position="fixed">
+                <h2>Footer</h2>
+            </div>
+        </div>
+        <!-- Conversion Page -->
+        <div data-role="page" id="convert">
+            <div data-theme="a" data-role="header">
+                <h3>Convert</h3>
+                <a data-role="button" data-transition="fade" href="#main_page"
+                data-icon="arrow-l" data-iconpos="left"> Back </a>
+            </div>
+            <div data-role="content">
+                <div data-role="fieldcontain">
+                    <label for="selectmenu1"> Convert: </label>
+                    <select
+                    name="convertmenu" id="convertmenu">
+                        <option value="sgToPlato">SG &gt; Plato</option>
+                        <option value="platoToSg">Plato &gt; SG</option>
+                        <option value="fToC">F &gt; C</option>
+                        <option value="cToF">C &gt; F</option>
+                    </select>
+                </div>
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup">
+                        <label for="in" id="in-label">SG</label>
+                        <input id="in"
+                        placeholder="" value="1.050" type="range" min="1.000" max="1.130"
+                        step="0.001" />
+                    </fieldset>
+                </div>
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup">
+                        <label for="out" id="outLabel">Plato</label>
+                        <input id="out"
+                        placeholder="1" value="" type="text" />
+                    </fieldset>
+                </div>
+            </div>
+            <div data-theme="a" data-role="footer" data-position="fixed">
+                <h3>sb</h3>
+                <a data-role="button" data-transition="pop" href="#main_page"
+                data-icon="info" data-iconpos="left"> Help </a>
+            </div>
+        </div>
+        <!-- Hydrometer Page -->
+        <div data-role="page" id="hydro">
+            <div data-theme="a" data-role="header">
+                <h3>Hydrometer</h3>
+                <a data-role="button" data-transition="fade" href="#main_page"
+                data-icon="arrow-l" data-iconpos="left"> Back </a>
+            </div>
+            <div data-role="content">
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup" data-type="horizontal"
+                    data-mini="true">
+                        <legend>
+                            Temp Units:
+                        </legend>
+                        <input name="hydr_tmp_u" id="hydr_tmp_u_f" value="f" type="radio"
+                        checked="checked" />
+                        <label for="hydr_tmp_u_f"> F </label>
+                        <input
+                        name="hydr_tmp_u" id="hydr_tmp_u_c" value="c" type="radio" />
+                        <label
+                        for="hydr_tmp_u_c"> C </label>
+                    </fieldset>
+                </div>
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup">
+                        <label for="hydr_sg"> SG reading: </label>
+                        <input id="hydr_sg"
+                        placeholder="" value="1.050" type="range" min="1.000" max="1.130"
+                        step="0.001" />
+                    </fieldset>
+                </div>
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup">
+                        <label for="hydr_tmp"> Temp of reading: </label>
+                        <input
+                        id="hydr_tmp" placeholder="" value="68" type="number" />
+                    </fieldset>
+                </div>
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup">
+                        <label for="callib_tmp"> Hydrometer callibration temp: </label>
+                        <input
+                        id="callib_tmp" placeholder="" value="68" type="number" />
+                    </fieldset>
+                </div>
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup">
+                        <label for="correct_sg"> Corrected value: </label>
+                        <input
+                        id="correct_sg" placeholder="" value="1.050" type="text" />
+                    </fieldset>
+                </div>
+            </div>
+            <div data-theme="a" data-role="footer" data-position="fixed">
+                <h3>Footer</h3>
+            </div>
+        </div>
+        <!-- Yeast page -->
+        <div data-role="page" id="yeast">
+            <div data-theme="a" data-role="header">
+                <h3>Yeast</h3>
+                <a data-role="button" data-transition="fade" href="#main_page"
+                data-icon="arrow-l" data-iconpos="left"> Back </a>
+            </div>
+            <div data-role="content">
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup" data-type="horizontal">
+                        <legend>
+                            Yeast Type
+                        </legend>
+                        <input name="rdo_yeasttype" id="ale" value="ale" type="radio"
+                        checked="checked" />
+                        <label for="ale"> Ale </label>
+                        <input
+                        name="rdo_yeasttype" id="lager" value="lager" type="radio" />
+                        <label
+                        for="lager"> Lager </label>
+                    </fieldset>
+                </div>
+                <div class="ui-grid-a">
+                    <div class="ui-block-a">
+                        <div data-role="fieldcontain">
+                            <fieldset data-role="controlgroup">
+                                <label for="yeast_wortvol"> Wort Volume </label>
+                                <input
+                                id="yeast_wortvol" placeholder="" value="5" type="range" min="1"
+                                max="1000" step="1" />
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="ui-block-b">
+                        <div data-role="fieldcontain">
+                            <label for="yeast_units"> Units </label>
+                            <select
+                            name="yeast_units" id="yeast_units">
+                                <option value="gal">Gal US</option>
+                                <option value="galimp">Gal IMP</option>
+                                <option value="l">litres</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup">
+                        <label for="yeast_og"> Wort OG </label>
+                        <input id="yeast_og"
+                        placeholder="" value="1.050" type="range" min="1" max="1.130"
+                        step="0.001" />
+                    </fieldset>
+                </div>
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup">
+                        <label for="yeast_count"> Yeast cells (billions): </label>
+                        <input
+                        id="yeast_count" placeholder="" value="68" type="text"
+                        readonly="readonly" />
+                    </fieldset>
+                </div>
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup">
+                        <label for="yeast_gr"> Grams of dry yeast: </label>
+                        <input
+                        id="yeast_gr" placeholder="" value="1" type="text"
+                        readonly="readonly" />
+                    </fieldset>
+                </div>
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup">
+                        <label for="yeast_l"> Litres of yeast slurry: </label>
+                        <input
+                        id="yeast_l" placeholder="" value="1" type="text"
+                        readonly="readonly" />
+                    </fieldset>
+                </div>
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup">
+                        <label for="yeast_tubes"> Tubes/Smackpacks: </label>
+                        <input
+                        id="yeast_tubes" placeholder="" value="1" type="text"
+                        readonly="readonly" />
+                    </fieldset>
+                </div>
+            </div>
+            <div data-theme="a" data-role="footer" data-position="fixed">
+                <h3>Footer</h3>
+            </div>
+        </div>
+        <!--  Refractometer -->
+        <div data-role="page" id="refract">
+            <div data-theme="a" data-role="header">
+                <h3>Refractometer Tools</h3>
+                <a data-role="button" data-transition="fade" href="#main_page"
+                data-icon="arrow-l" data-iconpos="left"> Back </a>
+            </div>
+            <div data-role="content">
+                <div data-role="collapsible-set" data-theme="" data-content-theme="">
+                    <div data-role="collapsible" data-collapsed="false">
+                        <h3>Brix to SG</h3>
+                        <div data-role="fieldcontain">
+                            <fieldset data-role="controlgroup">
+                                <label for="ref_brix"> Brix </label>
+                                <input id="ref_brix"
+                                placeholder="" value="12.5" type="range" min="1" max="20"
+                                step="0.5" />
+                            </fieldset>
+                        </div>
+                        <div data-role="fieldcontain">
+                            <fieldset data-role="controlgroup">
+                                <label for="ref_sg"> SG </label>
+                                <input id="ref_sg"
+                                placeholder="" value="1.050" type="text" readonly="readonly" />
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div data-role="collapsible" data-collapsed="true">
+                        <h3>SG from Brix</h3>
+                        <div data-role="fieldcontain">
+                            <fieldset data-role="controlgroup">
+                                <label for="ref_og_brix"> Original Brix </label>
+                                <input
+                                id="ref_og_brix" placeholder="" value="12" type="range" min="1"
+                                max="20" step="0.1" />
+                            </fieldset>
+                        </div>
+                        <div data-role="fieldcontain">
+                            <fieldset data-role="controlgroup">
+                                <label for="ref_curr_brix"> Current Brix </label>
+                                <input
+                                id="ref_curr_brix" placeholder="" value="5" type="range" min="1"
+                                max="20" step="0.1" />
+                            </fieldset>
+                        </div>
+                        <div data-role="fieldcontain">
+                            <fieldset data-role="controlgroup">
+                                <label for="ref_curr_sg"> Current SG </label>
+                                <input
+                                id="ref_curr_sg" placeholder="" value="1.012" type="text"
+                                readonly="readonly" />
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div data-role="collapsible" data-collapsed="true">
+                        <h3>ABV</h3>
+                        <div data-role="fieldcontain">
+                            <fieldset data-role="controlgroup">
+                                <label for="ref_abv_cbrix"> Current Brix </label>
+                                <input
+                                id="ref_abv_cbrix" placeholder="" value="5" type="range" min="1"
+                                max="20" step="0.1" />
+                            </fieldset>
+                        </div>
+                        <div data-role="fieldcontain">
+                            <fieldset data-role="controlgroup">
+                                <label for="ref_abv_csg"> Current SG </label>
+                                <input
+                                id="ref_abv_csg" placeholder="" value="1.030" type="range"
+                                min="1" max="1.130" step="0.001" />
+                            </fieldset>
+                        </div>
+                        <div data-role="fieldcontain">
+                            <fieldset data-role="controlgroup">
+                                <label for="ref_abv_abv"> Current ABV </label>
+                                <input
+                                id="ref_abv_abv" placeholder="" value="5" type="text"
+                                readonly="readonly" />
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div data-theme="a" data-role="footer" data-position="fixed">
+                <h3>Footer</h3>
+            </div>
+        </div>
+        <!-- Carbonation -->
+        <div data-role="page" id="carb" >
+            <div data-theme="a" data-role="header">
+                <h3>Carbonation</h3>
+                <a data-role="button" data-transition="fade" href="#main_page"
+                data-icon="arrow-l" data-iconpos="left"> Back </a>
+            </div>
+            <div data-role="content">
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup" data-mini="true">
+                        <label for="carb_targ_vols"> Target vols CO2: </label>
+                        <input
+                        id="carb_targ_vols" placeholder="" value="2.4" type="range" min="1"
+                        max="4" step="0.1" />
+                    </fieldset>
+                </div>
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup" data-type="horizontal"
+                    data-mini="true">
+                        <legend>
+                            Temp Units:
+                        </legend>
+                        <input name="carb_temp_u" id="carb_c" value="c" type="radio" />
+                        <label
+                        for="carb_c"> C </label>
+                        <input name="carb_temp_u" id="carb_f" value="f"
+                        type="radio" checked="checked" />
+                        <label for="carb_f"> F </label>
+                    </fieldset>
+                </div>
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup" data-mini="true">
+                        <label for="carb_serv_temp"> Serving Temp </label>
+                        <input
+                        id="carb_serv_temp" placeholder="" value="50" type="number" />
+                    </fieldset>
+                </div>
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup" data-mini="true">
+                        <label for="carb_bottletemp"> Temp at bottling: </label>
+                        <input
+                        id="carb_bottletemp" placeholder="" value="50" type="number" />
+                    </fieldset>
+                </div>
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup" data-mini="true">
+                        <label for="carb_co2"> Disolved CO2: </label>
+                        <input
+                        id="carb_co2" placeholder="" value="" type="text" />
+                    </fieldset>
+                </div>
+                <div data-role="fieldcontain" data-theme="b">
+                    <fieldset data-role="controlgroup" data-mini="true" >
+                        <label for="carb_kegpsi"> Keg PSI: </label>
+                        <input id="carb_kegpsi"
+                        placeholder="" value="15" type="text" readonly="readonly" />
+                    </fieldset>
+                </div>
+                <div data-role="fieldcontain">
+                    <label for="carb_sugar"> Priming sugar: </label>
+                    <select
+                    name="carb_sugar" id="carb_sugar" data-mini="true">
+                        <option value="dextrose">dextrose</option>
+                        <option value="tablesugar">table sugar</option>
+                        <option value="brownsugar">brown sugar</option>
+                        <option value="DME">DME</option>
+                        <option value="LME">LME</option>
+                        <option value="honey">honey</option>
+                        <option value="maplesyrup">maple syrup</option>
+                    </select>
+                </div>
+                <div class="ui-grid-a">
+                    <div class="ui-block-a">
+                        <div data-role="fieldcontain">
+                            <fieldset data-role="controlgroup">
+                                <label for="carb_beervol"> Beer Volume </label>
+                                <input
+                                id="carb_beervol" placeholder="" value="5" type="range" min="1"
+                                max="100" step="1" />
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="ui-block-b">
+                        <div data-role="fieldcontain">
+                            <label for="carb_beervol_u"> Units </label>
+                            <select
+                            name="carb_beervol_u" id="carb_beervol_u">
+                                <option value="gal">Gal US</option>
+                                <option value="galimp">Gal IMP</option>
+                                <option value="l">litres</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div data-role="fieldcontain" data-theme="e" >
+                    <fieldset data-role="controlgroup" data-mini="true">
+                        <label for="carb_sugarg"> Weight (g) to add: </label>
+                        <input
+                        id="carb_sugarg" placeholder="" value="" type="text" readonly="readonly" />
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+        <!--  Water -->
+        <div data-role="page" id="water">
+            <div data-theme="a" data-role="header">
+                <h3>Water Treatement</h3>
+                <a data-role="button" data-transition="fade" href="#main_page"
+                data-icon="arrow-l" data-iconpos="left"> Back </a>
+            </div>
+            <div data-role="content">
+                <form id='water_form'>
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a">
+                            <div data-role="fieldcontain">
+                                <fieldset data-role="controlgroup">
+                                    <label for="water_vol"> Water Volume </label>
+                                    <input
+                                    name="water_vol" id="water_vol" placeholder="" value="5" type="range" min="1"
+                                    max="100" step="1" />
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="ui-block-b">
+                            <div data-role="fieldcontain">
+                                <label for="water_vol_u"> Units </label>
+                                <select
+                                name="water_vol_u" id="water_vol_u">
+                                    <option value="gal">Gal US</option>
+                                    <option value="galimp">Gal IMP</option>
+                                    <option value="l">litres</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="ui-block-a">
+                            <div data-role="fieldcontain">
+                                <label for="water_source"> Source </label>
+                                <select
+                                name="water_source" id="water_source"></select>
+                            </div>
+                        </div>
+                        <div class="ui-block-b">
+                            <div data-role="fieldcontain">
+                                <label for="water_target"> Target </label>
+                                <select
+                                name="water_target" id="water_target"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Ions table -->
+                    <div class="ui-grid-c">
+                        <div class="ui-block-a"></div>
+                        <div class="ui-block-b">
+                            <div>
+                                <b> Source </b>
+                            </div>
+                        </div>
+                        <div class="ui-block-c">
+                            <div>
+                                <b> Target </b>
+                            </div>
+                        </div>
+                        <div class="ui-block-d">
+                            <div>
+                                <b> Treated </b>
+                            </div>
+                        </div>
+                        <div class="ui-block-a">
+                            <b> Ca </b>
+                        </div>
+                        <div class="ui-block-b">
+                            <div data-role="fieldcontain">
+                                <fieldset data-role="controlgroup" data-mini="true">
+                                    <input name="ca_src"  id="ca_src"  value="" type="text" />
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="ui-block-c">
+                            <div data-role="fieldcontain">
+                                <fieldset data-role="controlgroup" data-mini="true">
+                                    <input name="ca_trg" id="ca_trg" value="" type="text" />
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="ui-block-d">
+                            <div data-role="fieldcontain">
+                                <fieldset data-role="controlgroup" data-mini="true">
+                                    <input id="ca_treat" value="" type="text" />
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="ui-block-a">
+                            <div>
+                                <b> SO4 </b>
+                            </div>
+                        </div>
+                        <div class="ui-block-b">
+                            <div data-role="fieldcontain">
+                                <fieldset data-role="controlgroup" data-mini="true">
+                                    <input name="so4_src" id="so4_src"  value="" type="text" />
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="ui-block-c">
+                            <div data-role="fieldcontain">
+                                <fieldset data-role="controlgroup" data-mini="true">
+                                    <input name="so4_trg" id="so4_trg"    value="" type="text" />
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="ui-block-d">
+                            <div data-role="fieldcontain">
+                                <fieldset data-role="controlgroup" data-mini="true">
+                                    <input id="so4_treat" value="" type="text" />
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="ui-block-a">
+                            <div>
+                                <b> Mg </b>
+                            </div>
+                        </div>
+                        <div class="ui-block-b">
+                            <div data-role="fieldcontain">
+                                <fieldset data-role="controlgroup" data-mini="true">
+                                    <input name="mg_src" id="mg_src"  value="" type="text" />
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="ui-block-c">
+                            <div data-role="fieldcontain">
+                                <fieldset data-role="controlgroup" data-mini="true">
+                                    <input name="mg_trg"  id="mg_trg"    value="" type="text" />
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="ui-block-d">
+                            <div data-role="fieldcontain">
+                                <fieldset data-role="controlgroup" data-mini="true">
+                                    <input id="mg_treat" value="" type="text" />
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="ui-block-a">
+                            <div>
+                                <b> Na </b>
+                            </div>
+                        </div>
+                        <div class="ui-block-b">
+                            <div data-role="fieldcontain">
+                                <fieldset data-role="controlgroup" data-mini="true">
+                                    <input name="na_src" id="na_src"  value="" type="text" />
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="ui-block-c">
+                            <div data-role="fieldcontain">
+                                <fieldset data-role="controlgroup" data-mini="true">
+                                    <input name="na_trg"  id="na_trg"    value="" type="text" />
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="ui-block-d">
+                            <div data-role="fieldcontain">
+                                <fieldset data-role="controlgroup" data-mini="true">
+                                    <input id="na_treat" value="" type="text" />
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="ui-block-a">
+                            <div>
+                                <b> Cl </b>
+                            </div>
+                        </div>
+                        <div class="ui-block-b">
+                            <div data-role="fieldcontain">
+                                <fieldset data-role="controlgroup" data-mini="true">
+                                    <input name="cl_src" id="cl_src"  value="" type="text" />
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="ui-block-c">
+                            <div data-role="fieldcontain">
+                                <fieldset data-role="controlgroup" data-mini="true">
+                                    <input name="cl_trg"  id="cl_trg"    value="" type="text" />
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="ui-block-d">
+                            <div data-role="fieldcontain">
+                                <fieldset data-role="controlgroup" data-mini="true">
+                                    <input id="cl_treat" value="" type="text" />
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="ui-block-a">
+                            <div>
+                                <b> CO3 </b>
+                            </div>
+                        </div>
+                        <div class="ui-block-b">
+                            <div data-role="fieldcontain">
+                                <fieldset data-role="controlgroup" data-mini="true">
+                                    <input name="hco3_src"  id="hco3_src"  value="" type="text" />
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="ui-block-c">
+                            <div data-role="fieldcontain">
+                                <fieldset data-role="controlgroup" data-mini="true">
+                                    <input name="hco3_trg" id="hco3_trg"    value="" type="text" />
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="ui-block-d">
+                            <div data-role="fieldcontain">
+                                <fieldset data-role="controlgroup" data-mini="true">
+                                    <input id="hco3_treat" value="" type="text" />
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup">
+                        <label for="dilute_vol"> Dilute source water with: </label>
+                        <input id="dilute_vol" placeholder="" value="" type="text" readonly="readonly"/>
+                    </fieldset>
+                </div>
+                <!-- Salt Table -->
+                <table summary="Salt table">
+                    <caption>
+                        Salts for treatement
+                    </caption>
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">grams</th>
+                            <th scope="col">tsp</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Epsom</th>
+                            <td>
+                            <div data-role="fieldcontain">
+                                <fieldset data-role="controlgroup" data-mini="true">
+                                    <input id="MgSO4" placeholder="" value="" type="text" />
+                                </fieldset>
+                            </div></td>
+                            <td>
+                            <div data-role="fieldcontain">
+                                <fieldset data-role="controlgroup" data-mini="true">
+                                    <input id="MgSO4tsp" placeholder="" value="" type="text" />
+                                </fieldset>
+                            </div></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Gypsum</th>
+                            <td>
+                            <div data-role="fieldcontain">
+                                <fieldset data-role="controlgroup" data-mini="true">
+                                    <input id="CaSO4" placeholder="" value="" type="text" />
+                                </fieldset>
+                            </div></td>
+                            <td>
+                            <div data-role="fieldcontain">
+                                <fieldset data-role="controlgroup" data-mini="true">
+                                    <input id="CaSO4tsp" placeholder="" value="" type="text" />
+                                </fieldset>
+                            </div></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Salt</th>
+                            <td>
+                            <div data-role="fieldcontain">
+                                <fieldset data-role="controlgroup" data-mini="true">
+                                    <input id="NaCl" placeholder="" value="" type="text" />
+                                </fieldset>
+                            </div></td>
+                            <td>
+                            <div data-role="fieldcontain">
+                                <fieldset data-role="controlgroup" data-mini="true">
+                                    <input id="NaCltsp" placeholder="" value="" type="text" />
+                                </fieldset>
+                            </div></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Baking soda</th>
+                            <td>
+                            <div data-role="fieldcontain">
+                                <fieldset data-role="controlgroup" data-mini="true">
+                                    <input id="NaHCO3" placeholder="" value="" type="text" />
+                                </fieldset>
+                            </div></td>
+                            <td>
+                            <div data-role="fieldcontain">
+                                <fieldset data-role="controlgroup" data-mini="true">
+                                    <input id="NaHCO3tsp" placeholder="" value="" type="text" />
+                                </fieldset>
+                            </div></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Chalk</th>
+                            <td>
+                            <div data-role="fieldcontain">
+                                <fieldset data-role="controlgroup" data-mini="true">
+                                    <input id="CaCO3" placeholder="" value="" type="text" />
+                                </fieldset>
+                            </div></td>
+                            <td>
+                            <div data-role="fieldcontain">
+                                <fieldset data-role="controlgroup" data-mini="true">
+                                    <input id="CaCO3tsp" placeholder="" value="" type="text" />
+                                </fieldset>
+                            </div></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Calcium chloride</th>
+                            <td>
+                            <div data-role="fieldcontain">
+                                <fieldset data-role="controlgroup" data-mini="true">
+                                    <input id="CaCl2" placeholder="" value="" type="text" />
+                                </fieldset>
+                            </div></td>
+                            <td>
+                            <div data-role="fieldcontain">
+                                <fieldset data-role="controlgroup" data-mini="true">
+                                    <input id="CaCl2tsp" placeholder="" value="" type="text" />
+                                </fieldset>
+                            </div></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div data-role="content">
+                <button data-icon="check" data-iconpos="left" id="calculate">
+                    Calculate
+                </button>
+            </div>
+            <div data-theme="a" data-role="footer" data-position="fixed">
+                <h3>Footer</h3>
+            </div>
+        </div>
+        <!-- For local/PhoneGap -->
+        <script src="scripts/jquery-1.7.2.min.js"></script>
+        <script src="scripts/jquery.mobile-1.1.0.min.js"></script>
+        <script src="scripts/beercalcs.js"></script>
+        <script src="scripts/watercalcs.js"></script>
+        <script src="scripts/brewbro.js"></script>
+    </body>
+</html>
