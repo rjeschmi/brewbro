@@ -354,8 +354,8 @@ $('#convert').live('pageinit', function(event) {
 
 /* Conversion page support functions */
 function calculate() {
-	type = $('#convertmenu').val();
-	inp = $("#in").val();
+	var type = $("#convertmenu").val();
+	var inp = $("#in").val();
 	var out = 0;
 	switch (type) {
 	case 'cToF':
